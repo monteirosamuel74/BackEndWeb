@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class Categoria(models.Model):
@@ -15,6 +16,11 @@ class Categoria(models.Model):
 
     def __str__(self):
         return self.nome
+    
+    def get_absolute_url(self):
+        return reverse(
+            'shop:produto_list_por_categoria', args=[self.slug]
+        )
         
 class Produto(models.Model):
     categoria = models.ForeignKey(
@@ -30,6 +36,9 @@ class Produto(models.Model):
     disponivel = models.BooleanField(default=True)
     criado = models.DateTimeField(auto_now_add=True)
     atualizado = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('shop:produto_detalhe', args=[self.id, self.slug])
 
 class Meta:
     ordering = ['nome']
