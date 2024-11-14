@@ -23,6 +23,7 @@ from virtualshop.settings import MEDIA_ROOT
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('cart/', include('cart.urls', namespace='cart')),
     path('', include('shop.urls', namespace='shop'))
 ]
 
