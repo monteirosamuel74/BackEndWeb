@@ -18,9 +18,9 @@
         {% with total_items=cart|length %}
           {% if total_items > 0 %}
             Seu carrinho:
-            <a href="{% url 'cart:cart_detalhe' %}">
+            <a href="{% url 'cart:cart_detail' %}">
               {{ total_items }} item{{ total_items|pluralize }},
-              ${{ cart.get_preco_total }}
+              ${{ cart.get_price_total }}
             </a>
           {% elif not order %}
             Seu carrinho está vázio.
