@@ -30,7 +30,7 @@ Carrinho de Compras
             </td>
             <td>{{ produto.nome }}</td>
             <td>
-              <form action="{% url 'cart:cart_adicionar' produto.id %}" method="post">
+              <form action="{% url 'cart:cart_add' produto.id %}" method="post">
                 {{ item.atualizar_quantidade_form.quantidade }}
                 {{ item.atualizar_quantidade_form.override }}
                 <input type="submit" value="Update">
@@ -38,20 +38,20 @@ Carrinho de Compras
               </form>
             </td>
             <td>
-              <form action="{% url 'cart:cart_remover' produto.id %}" method="post">
+              <form action="{% url 'cart:cart_remove' produto.id %}" method="post">
                 <input type="submit" value="Remove">
                 {% csrf_token %}
               </form>
             </td>
-            <td class="num">${{ item.preco }}</td>
-            <td class="num">${{ item.preco_total }}</td>
+            <td class="num">${{ item.price }}</td>
+            <td class="num">${{ item.price_total }}</td>
           </tr>
         {% endwith %}
       {% endfor %}
       <tr class="total">
         <td>Total</td>
         <td colspan="4"></td>
-        <td class="num">${{ cart.get_preco_total }}</td>
+        <td class="num">${{ cart.get_price_total }}</td>
       </tr>
     </tbody>
   </table>
